@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The moment three apps became an OS — Limecore</title>
+  <meta name="description" content="I was about to log the same workout into two of my own apps. I asked Claude how to bridge them — and it asked me why they were three apps in the first place. The moment a suite became a studio." />
+  <link rel="canonical" href="https://limecore.vercel.app/blog/three-apps-became-an-os" />
+  <meta property="og:title" content="The moment three apps became an OS — Limecore" />
+  <meta property="og:description" content="I was about to log the same workout into two of my own apps. I asked Claude how to bridge them — and it asked me why they were three apps in the first place. The moment a suite became a studio." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://limecore.vercel.app/blog/three-apps-became-an-os" />
+  <meta property="article:published_time" content="2026-05-20" />
+  <meta property="article:author" content="Limekana" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="The moment three apps became an OS — Limecore" />
+  <meta name="twitter:description" content="I asked Claude how to bridge my three apps. It asked me why they were three apps. One realtime conversation later, I had a studio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #0A0A0A;
+      --surface: #111111;
+      --border:  #1A1A1A;
+      --accent:  #A3E635;
+      --text:    #F5F5F5;
+      --muted:   #737373;
+      --soft:    #C2C2C2;
+      --fdisplay: 'Oxanium', sans-serif;
+      --fmono:    'Space Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--fdisplay);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(163,230,53,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(163,230,53,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--fdisplay); font-weight: 800; font-size: 1rem;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-family: var(--fmono); font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+    main { position: relative; z-index: 1; flex: 1; }
+
+    .post-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 48px 120px;
+    }
+
+    .post-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--fmono); font-size: 0.62rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+      margin-bottom: 48px;
+    }
+    .post-back:hover { color: var(--accent); }
+
+    .post-header { margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+    .post-eyebrow {
+      font-family: var(--fmono); font-size: 0.6rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 22px;
+      display: flex; gap: 16px; align-items: center;
+    }
+    .post-eyebrow .dot { width: 4px; height: 4px; background: var(--muted); border-radius: 50%; }
+    .post-eyebrow .date { color: var(--muted); }
+
+    .post-title {
+      font-family: var(--fdisplay); font-weight: 800;
+      font-size: clamp(2rem, 5.5vw, 3rem);
+      letter-spacing: -0.02em; line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .post-lede {
+      font-family: var(--fdisplay); font-weight: 400;
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: var(--soft); line-height: 1.7;
+    }
+
+    /* POST BODY TYPOGRAPHY */
+    .post-body { font-family: var(--fdisplay); font-weight: 400; color: var(--soft); }
+    .post-body p {
+      font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+      line-height: 1.85;
+      margin-bottom: 22px;
+    }
+    .post-body p:last-child { margin-bottom: 0; }
+
+    .post-body h2 {
+      font-family: var(--fdisplay); font-weight: 700;
+      font-size: clamp(1.3rem, 2.8vw, 1.6rem);
+      letter-spacing: -0.01em; text-transform: none;
+      color: var(--text);
+      margin: 56px 0 22px;
+      padding-top: 28px; border-top: 1px solid var(--border);
+      position: relative;
+    }
+    .post-body h2::before {
+      content: '//';
+      font-family: var(--fmono); font-size: 0.7rem;
+      color: var(--accent); opacity: 0.7;
+      margin-right: 12px; letter-spacing: 0.05em;
+    }
+
+    .post-body a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s;
+    }
+    .post-body a:hover { opacity: 0.75; }
+
+    .post-body strong { color: var(--text); font-weight: 700; }
+    .post-body em { color: var(--text); font-style: italic; }
+
+    .post-body code {
+      font-family: var(--fmono); font-size: 0.85em;
+      background: var(--surface); color: var(--accent);
+      padding: 2px 6px; border: 1px solid var(--border);
+    }
+
+    .post-body blockquote {
+      margin: 28px 0;
+      padding: 20px 26px;
+      border-left: 2px solid var(--accent);
+      background: var(--surface);
+      font-family: var(--fmono);
+      font-size: clamp(0.82rem, 1.4vw, 0.92rem);
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .post-body blockquote p { margin-bottom: 0; font-family: var(--fmono); font-size: inherit; line-height: inherit; }
+
+    .post-body ul {
+      margin: 16px 0 28px;
+      padding-left: 0;
+      list-style: none;
+    }
+    .post-body ul li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 10px;
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      line-height: 1.7;
+    }
+    .post-body ul li::before {
+      content: '';
+      position: absolute; left: 0; top: 0.7em;
+      width: 8px; height: 1px; background: var(--accent);
+    }
+
+    .post-footer {
+      margin-top: 80px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .post-footer-meta {
+      font-family: var(--fmono); font-size: 0.6rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .post-footer-back {
+      font-family: var(--fmono); font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); text-decoration: none;
+      border: 1px solid var(--border); padding: 10px 18px;
+      transition: all 0.2s;
+    }
+    .post-footer-back:hover { border-color: var(--accent); color: var(--accent); }
+
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    }
+    .footer-logo { font-family: var(--fdisplay); font-weight: 800; font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); }
+    .footer-meta { font-family: var(--fmono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; margin-left: auto; }
+    .footer-links { display: flex; gap: 20px; align-items: center; }
+    .footer-link { font-family: var(--fmono); font-size: 0.65rem; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; }
+    .footer-link:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .post-wrap { padding: 56px 22px 80px; }
+      .post-back { margin-bottom: 32px; }
+      .post-header { margin-bottom: 40px; padding-bottom: 24px; }
+      .post-body h2 { margin: 40px 0 18px; padding-top: 22px; }
+      footer { padding: 24px; }
+      .footer-meta { margin-left: 0; width: 100%; order: 99; }
+    }
+    ::selection { background: var(--accent); color: #0A0A0A; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Limecore</a>
+    <ul class="nav-links">
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#suite">The Suite</a></li>
+      <li><a href="/#build">How I build</a></li>
+      <li><a href="/blog/" class="active">Blog</a></li>
+      <li><a href="https://github.com/Limekana" target="_blank" rel="noopener">GitHub ↗</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <article class="post-wrap">
+      <a href="/blog/" class="post-back">← All posts</a>
+
+      <header class="post-header">
+        <div class="post-eyebrow">
+          <span>002</span>
+          <span class="dot"></span>
+          <span class="date">2026-05-20</span>
+          <span class="dot"></span>
+          <span>5 min read</span>
+        </div>
+        <h1 class="post-title">The moment three apps became an OS</h1>
+        <p class="post-lede">I'd just gotten back from the gym. Mid-afternoon, after school. Claude Code was open on my main monitor, Spotify was on the second.</p>
+      </header>
+
+      <div class="post-body">
+        <p>I'd been testing the latest version of Limelog — my workout tracker — and I wanted to see how the same data would look in Nexus, the third app I'd been building. I opened Nexus and realized I'd have to create every exercise from scratch, then log the entire workout for a second time, just to test it. StudyDesk wasn't physically open on my desk. Neither was Limelog. They existed in my head as three separate apps, and I was about to log the same set of squats into two of them.</p>
+
+        <p>That's when I asked Claude the wrong question and got the right answer.</p>
+
+        <h2>Three apps, three reasons</h2>
+
+        <p>StudyDesk came first. It was my first real playaround with Claude, before I had Pro — I was just messing around in the Claude.ai desktop app, chatting with Sonnet. I asked it to brainstorm app ideas that would be genuinely useful in my day-to-day life, and a study planner came up near the top. I had about two months of school left before high school started, so I had a real testbed for it.</p>
+
+        <p>Limelog came two months later. I'd had back stress injuries during basketball season and just got cleared to lift again. I asked Claude if there was a good tracker for my exact case — build muscle and size, train vertical, work around the back restrictions. Claude said it'd be easier to build one. So we did.</p>
+
+        <p>Nexus Command Center came in less than two weeks after Limelog. I'd been investing for about a year and was getting into finance. The original plan for Nexus was monolithic: one app that held everything. Finance, studies, fitness, todos, reading. All the threads of my life in one place.</p>
+
+        <p>That monolith plan is what set up the realization.</p>
+
+        <h2>The friction that broke it</h2>
+
+        <p>When I opened Nexus that afternoon to test the workout module, I hit the obvious problem. I'd already logged the workout in Limelog. Now I was supposed to recreate every exercise in Nexus's separate database and log the same sets again. For a personal app I was the only user of. Testing alone, before any other human had even seen it.</p>
+
+        <p>It was dumb the moment I looked at it.</p>
+
+        <p>I typed something like this into Claude Code:</p>
+
+        <blockquote>
+          <p>Can you have Nexus dashboard pull like workouts and grades from StudyDesk and Limelog maybe like by a custom API or something that would fit?</p>
+        </blockquote>
+
+        <p>I was thinking like a person who'd built three separate things. Each app had its own data, its own logic, its own backend. To share data, I'd need a bridge — a custom API, some scraper, some scheduled job between three things that didn't know about each other.</p>
+
+        <p>Claude pushed back.</p>
+
+        <h2>The right answer</h2>
+
+        <p>Claude said something close to: "There's actually a much easier way to do this. Add StudyDesk and Limelog to the same Supabase project and have Nexus pull the data straight from there. No need for a custom API. About 1.5 seconds for realtime sync."</p>
+
+        <p>I leaned back in my chair and admired for a second how far the model had come from the autocomplete-grade stuff I'd been using a year before. Then I committed and we got to work.</p>
+
+        <p>The migration was clean. Nexus already had a Supabase project. I pointed StudyDesk and Limelog at the same project, added the rows needed for studies and workouts, set up RLS so user data stays isolated per account. Limelog still writes to its own concern (workouts). StudyDesk still writes to its (grades, exams, study sessions). Nexus reads from both. Local-first cache so the apps work without signal, with manual sync buttons as backup for when realtime hiccups.</p>
+
+        <p>Three apps. One database. Zero scrapers.</p>
+
+        <h2>What it unlocked</h2>
+
+        <p>At first it just meant I could see everything in Nexus that I'd logged elsewhere. Workout volume, GPA, exam dates, weekly study time, all on one screen. And the double-logging problem disappeared.</p>
+
+        <p>The real unlock came later. Once the data was actually flowing into Nexus I realized I didn't really want to look at raw numbers in a dashboard. So Nexus evolved. It stopped being a viewer and became a synthesizer. Now it computes a daily Life Score from what the other apps are feeding it, and writes an AI-generated weekly and monthly summary of how things are going across all the domains.</p>
+
+        <p>That synthesis would not exist if Nexus had stayed monolithic. The only reason it can summarize my month is that StudyDesk and Limelog are doing the dedicated work of accurate logging.</p>
+
+        <p>The dashboard got smarter because the loggers got dedicated.</p>
+
+        <h2>What it didn't solve</h2>
+
+        <p>UX is still the hard part. Deciding what shows where, when to surface a study session vs. a workout, how to navigate from one app's data into another app's context — none of that has a tidy answer. Shared schema solves the data problem, not the design problem.</p>
+
+        <p>The three-app install is also a real friction I suspect I'll feel once anyone other than me uses Limecore. Install one app, get one experience. Install three, get one — but only if all three sync correctly. I don't have users yet, so I don't have evidence for how painful this is in practice. I'm being honest that it's a known unsolved problem, not a hidden one.</p>
+
+        <h2>The actual lesson</h2>
+
+        <p>I still have basically zero real coding skill. I don't write the actual function bodies. Claude does, and I read them. I ship things I partially understand, I verify behavior over implementation, and most of the time it works.</p>
+
+        <p>The lesson from this specific story isn't "Claude wrote a good function for me." Claude didn't write a function in this moment at all. Claude looked at the question I'd asked — <em>how do I build a bridge between my three apps?</em> — and gave a different question back: <em>why are they three apps?</em></p>
+
+        <p>The wrong question would have produced a working answer. I'd have a scheduled scraper running between Nexus and the other two, fragile and slow, every schema change rippling through three places. That future is real. That's what I was about to build.</p>
+
+        <p>The biggest unlocks from AI coding aren't lines of code. They're the moments where you ask the wrong question and the model, calmly, hands you a different one.</p>
+
+        <p>Three weeks before this I had three apps. One realtime conversation later, I had a studio.</p>
+      </div>
+
+      <div class="post-footer">
+        <span class="post-footer-meta">// Limecore · Helsinki · 2026-05-20</span>
+        <a href="/blog/" class="post-footer-back">← All posts</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <span class="footer-logo">Limecore</span>
+    <div class="footer-links">
+      <a href="/" class="footer-link">Home</a>
+      <a href="/blog/" class="footer-link">Blog</a>
+      <a href="https://github.com/Limekana" target="_blank" rel="noopener" class="footer-link">GitHub ↗</a>
+      <a href="https://x.com/l1m3core" target="_blank" rel="noopener" class="footer-link" aria-label="Limecore on X">X ↗</a>
+      <a href="mailto:l1m3core@gmail.com" class="footer-link" aria-label="Email Limecore">Email ↗</a>
+    </div>
+    <span class="footer-meta">Helsinki · 2026</span>
+  </footer>
+
+</body>
+</html>
