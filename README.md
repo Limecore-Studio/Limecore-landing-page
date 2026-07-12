@@ -8,7 +8,7 @@ Independent software studio landing page. Single `index.html`, deployed via Verc
 - [x] ~~Add LimeLog hero screenshot~~ — Lock in + Phases shipped.
 - [x] ~~Add StudyDesk hero screenshot~~ — Grades + Pomodoro shipped.
 - [x] ~~Open-source LimeLog and Nexus repos; wire real GitHub URLs into the card link slots.~~ — live and linked.
-- [ ] Flip on F-Droid badges as submissions are accepted (LimeLog, StudyDesk, Nexus).
+- [ ] Flip on F-Droid links as submissions are accepted. StudyDesk live (com.StudyDesk.app); LimeLog + Nexus still pending.
 - [x] ~~Ship `/blog`~~ — live at `/blog/`. Posts: 001 "Vibe coding through high school", 002 "The moment three apps became an OS".
 - [x] ~~Replace footer X and Email placeholders with real handle / address.~~ — `x.com/l1m3core` and `l1m3core@gmail.com` live across landing + blog.
 
