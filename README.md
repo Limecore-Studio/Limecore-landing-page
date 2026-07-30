@@ -4,7 +4,7 @@ Independent software studio landing page. Single `index.html`, deployed via Verc
 
 ## TODO before HN / Show HN launch
 
-- [ ] **Migrate to a real domain** — currently on `limecore.vercel.app`. For HN, r/selfhosted, X build-in-public distribution, swap to `limecore.dev` / `.studio` / `.fi`. Prerequisite for the public launch push.
+- [x] ~~Migrate to a real domain~~ — live on **`limecore.dev`** (bought via Vercel 2026-07-26). `limecore.vercel.app` is kept as a redirect so the X-posted blog links and the F-Droid `WebSite` metadata keep resolving.
 - [x] ~~Add LimeLog hero screenshot~~ — Lock in + Phases shipped.
 - [x] ~~Add StudyDesk hero screenshot~~ — Grades + Pomodoro shipped.
 - [x] ~~Open-source LimeLog and Nexus repos; wire real GitHub URLs into the card link slots.~~ — live and linked.

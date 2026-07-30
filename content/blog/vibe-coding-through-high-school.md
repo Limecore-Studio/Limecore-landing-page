@@ -66,7 +66,7 @@ Those are things I can get better at by actually doing them. So that's what I'm 
 
 ## Production footprint
 
-- Limecore: [limecore.vercel.app](http://limecore.vercel.app)  
+- Limecore: [limecore.dev](https://limecore.dev)  
 - Nexus Command Center: [github.com/Limekana/nexus-command-center](http://github.com/Limekana/nexus-command-center)  
 - StudyDesk: [github.com/Limekana/studydesk](http://github.com/Limekana/studydesk)  
 - Limelog: [github.com/Limekana/limelog](http://github.com/Limekana/limelog)
