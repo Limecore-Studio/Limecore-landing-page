@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Mark JS available before paint so scroll-reveal hides content only when it can reveal it -->
+  <script>document.documentElement.classList.add('js');</script>
   <title>Limecore — A personal OS suite, built in high school</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -69,37 +71,32 @@
     }
     #hero::before { top: 120px; left: 48px; border-width: 1px 0 0 1px; }
     #hero::after  { bottom: 80px; right: 48px; border-width: 0 1px 1px 0; }
+    /* Hero paints immediately — no entrance animation (LCP, Phase 2 spec) */
     .hero-eyebrow {
       font-family: var(--fmono); font-size: 0.65rem; letter-spacing: 0.3em;
       text-transform: uppercase; color: var(--accent); margin-bottom: 36px;
-      opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s;
     }
     .hero-logo-wrap {
-      margin-bottom: 40px; opacity: 0;
-      animation: fadeUp 0.7s ease forwards 0.25s;
+      margin-bottom: 40px;
     }
     .hero-wordmark {
       font-family: var(--fdisplay); font-weight: 800;
       font-size: clamp(3.5rem, 10vw, 8rem); letter-spacing: -0.02em;
       line-height: 0.9; text-transform: uppercase; margin-bottom: 24px;
-      opacity: 0; animation: fadeUp 0.7s ease forwards 0.4s;
     }
     .hero-wordmark span { color: var(--accent); }
     .hero-tagline {
       font-family: var(--fdisplay); font-weight: 400;
       font-size: clamp(1rem, 2.2vw, 1.25rem);
       color: var(--text); letter-spacing: 0; margin-bottom: 14px;
-      opacity: 0; animation: fadeUp 0.6s ease forwards 0.55s;
     }
     .hero-subline {
       font-family: var(--fmono); font-size: clamp(0.7rem, 1.4vw, 0.82rem);
       color: var(--muted); letter-spacing: 0.04em; line-height: 1.7;
       max-width: 620px; margin: 0 auto 52px;
-      opacity: 0; animation: fadeUp 0.6s ease forwards 0.65s;
     }
     .hero-actions {
       display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp 0.6s ease forwards 0.75s;
     }
     .scanline {
       position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -122,10 +119,6 @@
     .btn-primary:hover { background: transparent; color: var(--accent); }
     .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
 
     /* SECTIONS */
     section { position: relative; z-index: 1; padding: 120px 48px; }
@@ -389,12 +382,20 @@
     .footer-link:hover { color: var(--accent); }
     .footer-link-todo { opacity: 0.45; cursor: not-allowed; }
 
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
+    /* SCROLL REVEAL (Phase 2) — gated on .js so content is visible without JS */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .5s cubic-bezier(.16,1,.3,1),
+                  transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .js .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 70ms; }
+    .reveal-delay-2 { transition-delay: 140ms; }
+    .reveal-delay-3 { transition-delay: 210ms; }
+    @media (prefers-reduced-motion: reduce) {
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+    }
 
     /* LIGHTBOX */
     .zoomable { cursor: zoom-in; }
@@ -895,7 +896,7 @@
     </div>
   </section>
 
-  <footer>
+  <footer class="reveal">
     <span class="footer-logo">Limecore</span>
     <div class="footer-links">
       <a href="/blog/" class="footer-link">Blog</a>
@@ -921,11 +922,12 @@
       const top = el.getBoundingClientRect().top + window.pageYOffset - 60;
       window.scrollTo({ top, behavior: 'smooth' });
     }
+    // SCROLL REVEAL (Phase 2) — one shared observer, once-only, fires slightly early
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
-    }, { threshold: 0.1 });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     // DATA GRAPH — gate SMIL pulses to when the panel is in view (battery)
