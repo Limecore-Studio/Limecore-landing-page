@@ -29,13 +29,15 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
+    /* PHASE 3a — dot grid. Replaces the previous full-page line grid: masked so it
+       fades out below the fold and reads as atmosphere rather than a wireframe. */
     body::before {
       content: '';
       position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(163,230,53,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(163,230,53,0.025) 1px, transparent 1px);
-      background-size: 60px 60px;
+      background-image: radial-gradient(circle at 1px 1px, #1A1A1A 1px, transparent 0);
+      background-size: 32px 32px;
+      -webkit-mask-image: radial-gradient(ellipse 120% 80% at 50% 0%, #000 30%, transparent 75%);
+      mask-image: radial-gradient(ellipse 120% 80% at 50% 0%, #000 30%, transparent 75%);
       pointer-events: none; z-index: 0;
     }
     nav {
@@ -71,6 +73,23 @@
     }
     #hero::before { top: 120px; left: 48px; border-width: 1px 0 0 1px; }
     #hero::after  { bottom: 80px; right: 48px; border-width: 0 1px 1px 0; }
+
+    /* PHASE 3b — the one lime wash on the page. Exactly one; a second turns the
+       aesthetic from industrial to consumer-SaaS. */
+    .depth-glow {
+      position: absolute;
+      top: -20%; left: 50%;
+      width: min(1100px, 140vw);
+      aspect-ratio: 1;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle,
+        rgba(163,230,53,.04) 0%,
+        rgba(163,230,53,.015) 35%,
+        transparent 70%);
+    }
+    #hero > *:not(.depth-glow) { position: relative; z-index: 1; }
     /* Hero paints immediately — no entrance animation (LCP, Phase 2 spec) */
     .hero-eyebrow {
       font-family: var(--fmono); font-size: 0.65rem; letter-spacing: 0.3em;
@@ -167,22 +186,13 @@
 
     /* IN-CARD SCREEN STRIP (LimeLog, StudyDesk) */
     .card-screens {
-      display: flex; gap: 10px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
       margin: -36px -32px 8px -32px;
-      padding: 18px 16px 12px;
+      padding: 20px 18px 14px;
       background: linear-gradient(180deg, #0f0f0f 0%, #080808 100%);
       border-bottom: 1px solid var(--border);
       position: relative;
     }
-    .card-screens::after {
-      content: ''; position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(163,230,53,0.04) 1px, transparent 1px);
-      background-size: 100% 22px;
-      pointer-events: none; opacity: 0.45;
-    }
-    .card-screens .screen-item { flex: 1; min-width: 0; }
-    .card-screens .screen-frame { border-radius: 10px; }
-    .card-screens .screen-caption { font-size: 0.5rem; letter-spacing: 0.2em; margin-top: 6px; }
 
     /* FEATURED PROJECT (Nexus) */
     .featured-wrap {
@@ -233,62 +243,48 @@
 
     /* MAIN SCREENS (2 large phones, right column) */
     .featured-screens-main {
-      display: flex; gap: 16px; align-items: flex-end; justify-content: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start;
     }
+    /* PHASE 4 — screenshot presentation. Thin hard bezel, square corners:
+       a frame in the site's own geometry, not a photoreal phone mockup. */
     .screen-item {
-      display: flex; flex-direction: column; gap: 12px;
+      display: flex; flex-direction: column; gap: 10px;
       flex: 1; min-width: 0;
-      transition: transform 0.4s ease;
     }
     .screen-frame {
-      aspect-ratio: 9 / 20;
-      background: linear-gradient(180deg, #0f0f0f 0%, #080808 100%);
-      border: 1px solid var(--border); border-radius: 14px;
-      position: relative; overflow: hidden;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      background: #111;
+      border: 1px solid #242424;
+      padding: 6px;
+      box-shadow: 0 24px 48px -24px rgba(0,0,0,.9);
+      transition: transform .3s cubic-bezier(.16,1,.3,1), border-color .3s ease;
     }
-    .screen-frame img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
+    .screen-frame img { display: block; width: 100%; height: auto; }
+    .screen-frame::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: var(--accent);
+      opacity: 0; transition: opacity .3s ease;
+      z-index: 2;
     }
-    .screen-frame::after {
-      content: ''; position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(163,230,53,0.05) 1px, transparent 1px);
-      background-size: 100% 24px;
-      pointer-events: none; z-index: 2; opacity: 0.5;
-    }
+    .screen-frame:hover { transform: translateY(-4px); border-color: #3A3A3A; }
+    .screen-frame:hover::before { opacity: 1; }
     .screen-caption {
-      font-family: var(--fmono); font-size: 0.55rem; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--muted);
-      text-align: center; transition: color 0.3s;
+      font-family: var(--fmono); font-size: 10px; letter-spacing: .18em;
+      text-transform: uppercase; color: #5A5A5A;
+      text-align: center;
     }
-    .project-featured:hover .screen-frame {
-      border-color: rgba(163,230,53,0.45);
-      box-shadow: 0 12px 32px -16px rgba(163,230,53,0.25);
+    @media (prefers-reduced-motion: reduce) {
+      .screen-frame, .screen-frame::before { transition: none; }
+      .screen-frame:hover { transform: none; }
     }
-    .project-featured:hover .screen-caption { color: var(--accent); }
-    .project-featured:hover .featured-screens-main .screen-item:nth-child(1) { transform: translateY(-6px); }
-    .project-featured:hover .featured-screens-main .screen-item:nth-child(2) { transform: translateY(-10px); }
 
     /* THUMBNAIL STRIP (3 smaller phones, below featured row) */
     .featured-thumbs {
-      display: flex; gap: 14px; justify-content: center;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 180px));
+      justify-content: center; gap: 14px;
       padding: 24px 44px 36px;
       border-top: 1px solid var(--border);
-      background: rgba(15, 15, 15, 0.4);
-    }
-    .featured-thumbs .screen-item { flex: 0 1 180px; opacity: 0.85; transition: opacity 0.3s, transform 0.3s; }
-    .featured-thumbs .screen-item:hover { opacity: 1; }
-    .featured-thumbs .screen-frame { border-radius: 10px; }
-    .featured-thumbs .screen-caption { font-size: 0.5rem; letter-spacing: 0.2em; }
-    .featured-thumbs-label {
-      align-self: center;
-      font-family: var(--fmono); font-size: 0.55rem; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--muted);
-      writing-mode: vertical-rl; transform: rotate(180deg);
-      padding-right: 8px;
-      opacity: 0.7;
     }
 
     /* SUITE SECTION (02 /) */
@@ -382,19 +378,28 @@
     .footer-link:hover { color: var(--accent); }
     .footer-link-todo { opacity: 0.45; cursor: not-allowed; }
 
-    /* SCROLL REVEAL (Phase 2) — gated on .js so content is visible without JS */
+    /* SCROLL REVEAL (Phase 2) — gated on .js so content is visible without JS.
+       Distance/duration exceed the spec's 16px/600ms caps deliberately: at those
+       values the reveal read as a pop rather than motion. Longer travel over a
+       longer, decelerating curve — and an earlier trigger — is what makes it
+       feel continuous with the scroll instead of spawning in. */
     .js .reveal {
       opacity: 0;
-      transform: translateY(12px);
-      transition: opacity .5s cubic-bezier(.16,1,.3,1),
-                  transform .5s cubic-bezier(.16,1,.3,1);
+      transform: translate3d(0, 28px, 0);
+      transition: opacity .9s cubic-bezier(.22,.61,.36,1),
+                  transform .9s cubic-bezier(.22,.61,.36,1);
+      will-change: opacity, transform;
     }
-    .js .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 70ms; }
-    .reveal-delay-2 { transition-delay: 140ms; }
-    .reveal-delay-3 { transition-delay: 210ms; }
+    .js .reveal.visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
+    .reveal-delay-1 { transition-delay: 90ms; }
+    .reveal-delay-2 { transition-delay: 180ms; }
+    .reveal-delay-3 { transition-delay: 270ms; }
     @media (prefers-reduced-motion: reduce) {
-      .js .reveal { opacity: 1; transform: none; transition: none; }
+      .js .reveal { opacity: 1; transform: none; transition: none; will-change: auto; }
     }
 
     /* LIGHTBOX */
@@ -450,7 +455,7 @@
     @media (max-width: 960px) {
       .project-featured { grid-template-columns: 1fr; padding: 36px 28px; gap: 32px; }
       .featured-screens-main { gap: 12px; }
-      .featured-thumbs { padding: 20px 28px 28px; flex-wrap: wrap; }
+      .featured-thumbs { padding: 20px 28px 28px; }
       .suite-copy { grid-template-columns: 1fr 1fr; gap: 28px 40px; }
       .build-layout { grid-template-columns: 1fr; gap: 32px; }
     }
@@ -466,6 +471,33 @@
       footer { padding: 24px; flex-wrap: wrap; }
       .footer-meta { margin-left: 0; width: 100%; order: 99; }
       .lightbox { padding: 48px 16px 24px; }
+
+      /* PHASE 4 — screenshot rails. Snap-scrolling sideways with an edge fade so
+         it is visually obvious there is more content off-screen. */
+      .card-screens,
+      .featured-screens-main,
+      .featured-thumbs {
+        display: flex;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent 100%);
+        mask-image: linear-gradient(90deg, #000 82%, transparent 100%);
+      }
+      .card-screens::-webkit-scrollbar,
+      .featured-screens-main::-webkit-scrollbar,
+      .featured-thumbs::-webkit-scrollbar { display: none; }
+      .card-screens .screen-item,
+      .featured-screens-main .screen-item,
+      .featured-thumbs .screen-item {
+        flex: 0 0 58%;
+        scroll-snap-align: start;
+      }
+      .featured-thumbs { padding: 20px 24px 26px; }
+      /* Hover lift is meaningless on touch and fights the scroll */
+      .screen-frame:hover { transform: none; }
     }
     ::selection { background: var(--accent); color: #0A0A0A; }
     ::-webkit-scrollbar { width: 4px; }
@@ -490,6 +522,7 @@
 
   <!-- HERO -->
   <section id="hero">
+    <div class="depth-glow" aria-hidden="true"></div>
     <div class="scanline"></div>
     <p class="hero-eyebrow">Est. 2026 · Helsinki</p>
 
@@ -551,11 +584,21 @@
           <!-- Main: 2 large priority screenshots -->
           <div class="featured-screens-main">
             <div class="screen-item">
-              <div class="screen-frame"><img class="zoomable" src="Nexus_HQ_Home_Main.png" alt="Nexus Home screen" loading="lazy"/></div>
+              <div class="screen-frame">
+                <picture>
+                  <source srcset="Nexus_HQ_Home_Main.webp" type="image/webp"/>
+                  <img class="zoomable" src="Nexus_HQ_Home_Main.png" width="864" height="1920" loading="lazy" decoding="async" alt="Nexus home screen showing the daily life score with finance, studies, and fitness summaries"/>
+                </picture>
+              </div>
               <div class="screen-caption">Home</div>
             </div>
             <div class="screen-item">
-              <div class="screen-frame"><img class="zoomable" src="Nexus_HQ_Goals_Main.png" alt="Nexus Goals screen" loading="lazy"/></div>
+              <div class="screen-frame">
+                <picture>
+                  <source srcset="Nexus_HQ_Goals_Main.webp" type="image/webp"/>
+                  <img class="zoomable" src="Nexus_HQ_Goals_Main.png" width="864" height="1920" loading="lazy" decoding="async" alt="Nexus goals screen listing tracked goals with progress bars across modules"/>
+                </picture>
+              </div>
               <div class="screen-caption">Goals</div>
             </div>
           </div>
@@ -564,15 +607,30 @@
         <!-- Thumbnail strip: smaller secondary screenshots -->
         <div class="featured-thumbs">
           <div class="screen-item">
-            <div class="screen-frame"><img class="zoomable" src="Portfolio.png" alt="Nexus portfolio screen" loading="lazy"/></div>
+            <div class="screen-frame">
+              <picture>
+                <source srcset="Portfolio.webp" type="image/webp"/>
+                <img class="zoomable" src="Portfolio.png" width="864" height="1920" loading="lazy" decoding="async" alt="Portfolio screen with holdings, allocation donut, and multi-currency totals"/>
+              </picture>
+            </div>
             <div class="screen-caption">Portfolio</div>
           </div>
           <div class="screen-item">
-            <div class="screen-frame"><img class="zoomable" src="Weekly_review.png" alt="Nexus weekly review screen" loading="lazy"/></div>
+            <div class="screen-frame">
+              <picture>
+                <source srcset="Weekly_review.webp" type="image/webp"/>
+                <img class="zoomable" src="Weekly_review.png" width="864" height="1920" loading="lazy" decoding="async" alt="Weekly review screen synthesising workouts, study hours, and finance into one recap"/>
+              </picture>
+            </div>
             <div class="screen-caption">Weekly Review</div>
           </div>
           <div class="screen-item">
-            <div class="screen-frame"><img class="zoomable" src="What_if.png" alt="Nexus what-if simulator screen" loading="lazy"/></div>
+            <div class="screen-frame">
+              <picture>
+                <source srcset="What_if.webp" type="image/webp"/>
+                <img class="zoomable" src="What_if.png" width="864" height="1920" loading="lazy" decoding="async" alt="What-if simulator projecting net worth from adjustable contribution and growth assumptions"/>
+              </picture>
+            </div>
             <div class="screen-caption">What-If</div>
           </div>
         </div>
@@ -584,11 +642,21 @@
         <div class="project-card reveal reveal-delay-1">
           <div class="card-screens">
             <div class="screen-item">
-              <div class="screen-frame"><img class="zoomable" src="Limelog_Lockin.png" alt="LimeLog Lock In mode" loading="lazy"/></div>
+              <div class="screen-frame">
+                <picture>
+                  <source srcset="Limelog_Lockin.webp" type="image/webp"/>
+                  <img class="zoomable" src="Limelog_Lockin.png" width="1080" height="2340" loading="lazy" decoding="async" alt="Fullscreen workout mode with the current set, target reps, and a persistent rest timer bar"/>
+                </picture>
+              </div>
               <div class="screen-caption">Lock in</div>
             </div>
             <div class="screen-item">
-              <div class="screen-frame"><img class="zoomable" src="Limelog_Phases.png" alt="LimeLog phases view" loading="lazy"/></div>
+              <div class="screen-frame">
+                <picture>
+                  <source srcset="Limelog_Phases.webp" type="image/webp"/>
+                  <img class="zoomable" src="Limelog_Phases.png" width="1080" height="2340" loading="lazy" decoding="async" alt="Training phase view showing the periodised block schedule and current mesocycle"/>
+                </picture>
+              </div>
               <div class="screen-caption">Phases</div>
             </div>
           </div>
@@ -614,11 +682,21 @@
         <div class="project-card reveal reveal-delay-2">
           <div class="card-screens">
             <div class="screen-item">
-              <div class="screen-frame"><img class="zoomable" src="StudyDesk_grades.png" alt="StudyDesk grades view" loading="lazy"/></div>
+              <div class="screen-frame">
+                <picture>
+                  <source srcset="StudyDesk_grades.webp" type="image/webp"/>
+                  <img class="zoomable" src="StudyDesk_grades.png" width="864" height="1920" loading="lazy" decoding="async" alt="Course list with per-subject grades on the IB 1 to 7 scale and a running average"/>
+                </picture>
+              </div>
               <div class="screen-caption">Grades</div>
             </div>
             <div class="screen-item">
-              <div class="screen-frame"><img class="zoomable" src="StudyDesk_Pomodoro.png" alt="StudyDesk Pomodoro logger" loading="lazy"/></div>
+              <div class="screen-frame">
+                <picture>
+                  <source srcset="StudyDesk_Pomodoro.webp" type="image/webp"/>
+                  <img class="zoomable" src="StudyDesk_Pomodoro.png" width="864" height="1920" loading="lazy" decoding="async" alt="Pomodoro timer mid-session with the save-session prompt for logging study time"/>
+                </picture>
+              </div>
               <div class="screen-caption">Pomodoro</div>
             </div>
           </div>
@@ -922,12 +1000,16 @@
       const top = el.getBoundingClientRect().top + window.pageYOffset - 60;
       window.scrollTo({ top, behavior: 'smooth' });
     }
-    // SCROLL REVEAL (Phase 2) — one shared observer, once-only, fires slightly early
+    // SCROLL REVEAL (Phase 2) — one shared observer, once-only.
+    // Positive bottom rootMargin expands the detection box below the viewport so
+    // an element starts moving just BEFORE it scrolls into view; by the time it
+    // reaches reading position it is already settling. Triggering after it is
+    // fully visible is what made the old version read as "spawning in".
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.1 });
+    }, { rootMargin: '0px 0px 12% 0px', threshold: 0 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     // DATA GRAPH — gate SMIL pulses to when the panel is in view (battery)
@@ -961,7 +1043,8 @@
       return cap ? cap.textContent.trim() : (img.alt || '');
     }
     function openLightbox(img) {
-      lbImg.src = img.src;
+      // currentSrc is the source the browser actually picked (WebP where supported)
+      lbImg.src = img.currentSrc || img.src;
       lbImg.alt = img.alt || '';
       lbCap.textContent = captionFor(img);
       lb.classList.add('open');
