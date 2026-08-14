@@ -172,6 +172,8 @@
     .card-links { display: flex; gap: 14px; align-items: center; }
     .project-link.fdroid { color: var(--accent); }
     .project-link.fdroid:hover { opacity: 0.7; }
+    .project-link.web { color: var(--accent); }
+    .project-link.web:hover { opacity: 0.7; }
 
     /* TECH CHIPS */
     .chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -562,7 +564,7 @@
             </div>
             <div class="featured-title">Nexus Command Center</div>
             <p class="featured-tagline">A local-first life dashboard. Finance, studies, fitness, and tasks — synchronised across your devices, powered by your own API keys.</p>
-            <p class="featured-blurb">The hub of the suite. Reads workouts from LimeLog and study hours from StudyDesk over Supabase Realtime, plus its own finance, tasks, and goals modules. Dexie + IndexedDB local-first, BYO API keys, biometric unlock, cross-module weekly reviews that single-purpose apps can't surface.</p>
+            <p class="featured-blurb">The hub of the suite. Reads workouts from LimeLog and study hours from StudyDesk over Supabase Realtime, plus its own finance, tasks, goals, and reading modules. Dexie + IndexedDB local-first, BYO API keys, biometric unlock, and a cross-module weekly review no single-purpose tracker can produce. On F-Droid for Android, with a full desktop edition in the browser.</p>
             <div class="chips">
               <span class="chip">React</span>
               <span class="chip">TypeScript</span>
@@ -576,6 +578,8 @@
               <span class="status-badge local">Local-first</span>
               <div class="card-links">
                 <a href="https://github.com/Limekana/nexus-command-center" target="_blank" rel="noopener" class="project-link" aria-label="Nexus Command Center on GitHub">GitHub ↗</a>
+                <a href="https://f-droid.org/packages/com.limecore.nexus/" target="_blank" rel="noopener" class="project-link fdroid" aria-label="Nexus Command Center on F-Droid">F-Droid ↗</a>
+                <a href="https://nexus.limecore.dev" target="_blank" rel="noopener" class="project-link web" aria-label="Open Nexus Command Center in your browser">Open in browser ↗</a>
                 <!-- TODO: insert F-Droid link / badge when submission is accepted -->
               </div>
             </div>
@@ -662,7 +666,7 @@
           </div>
           <span class="project-num">002</span>
           <div class="project-name">LimeLog</div>
-          <p class="project-desc">Periodized workout tracker built for competitive athletes. Log sets, track vertical jump, manage injury restrictions, and get phase-aware progression insights. Writes into Nexus Fitness over Realtime.</p>
+          <p class="project-desc">Periodized workout tracker built for competitive athletes. Log sets, track vertical jump, work around injury restrictions, and get phase-aware progression insights. Writes into Nexus Fitness over Realtime. Android only — F-Droid submission in review.</p>
           <div class="chips">
             <span class="chip">React</span>
             <span class="chip">TypeScript</span>
@@ -671,7 +675,7 @@
             <span class="chip">Capacitor</span>
           </div>
           <div class="project-footer">
-            <span class="status-badge wip">In progress</span>
+            <span class="status-badge local">Local-first</span>
             <div class="card-links">
               <a href="https://github.com/Limekana/limelog" target="_blank" rel="noopener" class="project-link" aria-label="LimeLog on GitHub">GitHub ↗</a>
               <!-- TODO: insert F-Droid link / badge when submission is accepted -->
@@ -702,7 +706,7 @@
           </div>
           <span class="project-num">003</span>
           <div class="project-name">StudyDesk</div>
-          <p class="project-desc">Study planner for IB (1–7) and US (4.0) grading. Course list, Pomodoro logger, session journal. Writes into Nexus Studies over Realtime — what you log here surfaces in the hub.</p>
+          <p class="project-desc">Study planner for IB (1–7) and US (4.0) grading. Course list, Pomodoro logger, assignment and exam calendar. Writes into Nexus Studies over Realtime — what you log here surfaces in the hub. On F-Droid, plus a desktop edition with month and week grids in the browser.</p>
           <div class="chips">
             <span class="chip">React</span>
             <span class="chip">Capacitor</span>
@@ -714,6 +718,7 @@
             <div class="card-links">
               <a href="https://github.com/Limekana/StudyDesk/tree/main" target="_blank" rel="noopener" class="project-link">GitHub ↗</a>
               <a href="https://f-droid.org/en/packages/com.StudyDesk.app/" target="_blank" rel="noopener" class="project-link fdroid">F-Droid ↗</a>
+              <a href="https://studydesk.limecore.dev" target="_blank" rel="noopener" class="project-link web" aria-label="Open StudyDesk in your browser">Open in browser ↗</a>
             </div>
           </div>
         </div>
