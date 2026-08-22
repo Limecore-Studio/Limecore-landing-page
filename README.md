@@ -8,6 +8,9 @@ Independent software studio landing page. Single `index.html`, deployed via Verc
 - [x] ~~Add LimeLog hero screenshot~~ — Lock in + Phases shipped.
 - [x] ~~Add StudyDesk hero screenshot~~ — Grades + Pomodoro shipped.
 - [x] ~~Open-source LimeLog and Nexus repos; wire real GitHub URLs into the card link slots.~~ — live and linked.
+- [ ] **FAQ section** — five honest questions, not filler: is it free / who can see my data / why three apps instead of one / iOS / can I self-host. Doubles as `FAQPage` schema. Deferred from the 2026-08-14 site audit.
+- [ ] **Structured data** — `Organization` for the studio, `SoftwareApplication` per app, `BlogPosting` on posts. **Not** `LocalBusiness`: Limecore is not a local service business, wrong entity type and reads as a spam signal. Deferred from the same audit.
+- [ ] **Surface recent blog posts on the landing page** — internal-links win, and the posts function as the case studies a studio page would otherwise need.
 - [ ] Flip on F-Droid links as submissions are accepted. StudyDesk (`com.StudyDesk.app`) and Nexus (`com.limecore.nexus`) live; **LimeLog still pending** (held behind fdroiddata !41548).
 - [x] ~~Add "Open in browser" links for the desktop web editions.~~ — live: `studydesk.limecore.dev` and `nexus.limecore.dev`, both git-connected Vercel projects deploying from each app's `main`. **No LimeLog web link** — it has no desktop shell. See `docs/handoff-web-apps.md`.
 - [x] ~~Ship `/blog`~~ — live at `/blog/`. Posts: 001 "Vibe coding through high school", 002 "The moment three apps became an OS".
