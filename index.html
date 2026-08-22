@@ -6,6 +6,21 @@
   <!-- Mark JS available before paint so scroll-reveal hides content only when it can reveal it -->
   <script>document.documentElement.classList.add('js');</script>
   <title>Limecore — A personal OS suite, built in high school</title>
+  <meta name="description" content="A one-person studio in Helsinki. Three Android apps — Nexus Command Center, LimeLog, StudyDesk — that sync to each other over Supabase Realtime. Local-first, open source, no subscription." />
+  <link rel="canonical" href="https://limecore.dev/" />
+  <meta property="og:site_name" content="Limecore" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://limecore.dev/" />
+  <meta property="og:title" content="Limecore — A personal OS suite, built in high school" />
+  <meta property="og:description" content="A one-person studio in Helsinki. Three Android apps — Nexus Command Center, LimeLog, StudyDesk — that sync to each other over Supabase Realtime. Local-first, open source, no subscription." />
+  <meta property="og:image" content="https://limecore.dev/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Limecore — a personal OS suite, built in high school" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Limecore — A personal OS suite, built in high school" />
+  <meta name="twitter:description" content="A one-person studio in Helsinki. Three Android apps — Nexus Command Center, LimeLog, StudyDesk — that sync to each other over Supabase Realtime. Local-first, open source, no subscription." />
+  <meta name="twitter:image" content="https://limecore.dev/og-home.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -507,6 +522,7 @@
     ::-webkit-scrollbar-thumb { background: var(--border); }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
   </style>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -541,7 +557,8 @@
     <p class="hero-subline">Three apps that sync to each other over Realtime. Local-first. Open source. Helsinki.</p>
 
     <div class="hero-actions">
-      <button class="btn btn-primary" onclick="go(event,'projects')">View Projects</button>
+      <a href="https://nexus.limecore.dev" target="_blank" rel="noopener" class="btn btn-primary">Try Nexus in your browser ↗</a>
+      <button class="btn btn-ghost" onclick="go(event,'projects')">View Projects</button>
       <a href="https://github.com/Limekana" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
     </div>
   </section>
@@ -986,6 +1003,7 @@
       <a href="https://github.com/Limekana" target="_blank" rel="noopener" class="footer-link">GitHub ↗</a>
       <a href="https://x.com/l1m3core" target="_blank" rel="noopener" class="footer-link" aria-label="Limecore on X">X ↗</a>
       <a href="mailto:l1m3core@gmail.com" class="footer-link" aria-label="Email Limecore">Email ↗</a>
+      <a href="https://limekana.github.io/nexus-command-center/legal/privacy.html" target="_blank" rel="noopener" class="footer-link">Privacy</a>
       <a href="https://ko-fi.com/limecorestudio" target="_blank" rel="noopener" class="footer-link" aria-label="Support Limecore on Ko-fi">Ko-fi ↗</a>
     </div>
     <span class="footer-meta">Helsinki · 2026</span>

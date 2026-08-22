@@ -1,0 +1,5 @@
+# limecore.dev
+User-agent: *
+Allow: /
+
+Sitemap: https://limecore.dev/sitemap.xml
