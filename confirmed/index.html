@@ -101,7 +101,43 @@
     // is the only case where the default copy above would be a lie.
     (function () {
       var hash = window.location.hash || '';
-      if (hash.indexOf('error') === -1) return;
+      var set = function (id, text) { document.getElementById(id).textContent = text; };
+      var clearUrl = function () {
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', window.location.pathname);
+        }
+      };
+
+      // limecore#10 — an email change (v1.17). With Secure email change on,
+      // Supabase mails a link to the old AND the new address. The first one
+      // opened lands here with a `message` param ("... confirm link sent to
+      // the other email"); the default "You're all set" would tell the user
+      // they are done when the change has not happened yet. The apps add
+      // `?flow=email-change` to the link, so the second one can say what
+      // actually changed (if that URL is not on Supabase's redirect allow
+      // list, Supabase falls back to the plain Site URL and the default copy
+      // shows, which is still true).
+      if (hash.indexOf('error') === -1) {
+        var query = new URLSearchParams(window.location.search);
+        var hashParams = new URLSearchParams(hash.replace(/^#/, ''));
+        var message = query.get('message') || hashParams.get('message') || '';
+        if (message) {
+          document.title = 'One more link — Limecore';
+          set('label', 'Email change');
+          set('title', 'One more link');
+          set('body', 'This address is confirmed. A second link went to your other address: open that one too, and the change takes effect once both are confirmed.');
+          set('next-text', 'Open the second link, then head back to the app. You stay signed in.');
+          clearUrl();
+        } else if (query.get('flow') === 'email-change') {
+          document.title = 'Email changed — Limecore';
+          set('label', 'Email changed');
+          set('title', "You're all set");
+          set('body', 'Your Limecore account uses the new address from now on, in StudyDesk, NCC and LimeLog.');
+          set('next-text', 'Head back to the app. You stay signed in.');
+          clearUrl();
+        }
+        return;
+      }
 
       var params = new URLSearchParams(hash.replace(/^#/, ''));
       var code = params.get('error_code') || params.get('error') || '';
@@ -114,8 +150,11 @@
         ? 'Confirmation links are single-use and time-limited. This one is past its window, or it had already been used.'
         : 'The link could not be verified. It may have been used already, or copied incompletely.';
       document.getElementById('next-label').textContent = 'What to do';
+      // An email-change link has no code to fall back on (limecore#10).
       document.getElementById('next-text').textContent =
-        'Open the app and use the 6-digit code from the email instead. If the code is stale too, tap "Send a new code".';
+        new URLSearchParams(window.location.search).get('flow') === 'email-change'
+          ? 'Your address has not changed. Start the change again from Settings → Account in the app.'
+          : 'Open the app and use the 6-digit code from the email instead. If the code is stale too, tap "Send a new code".';
 
       // Strip the fragment so a refresh doesn't re-show an error for a link that
       // may have succeeded on an earlier attempt.
