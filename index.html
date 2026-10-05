@@ -68,6 +68,15 @@
         "applicationCategory": "HealthApplication",
         "operatingSystem": "Android",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "position": 4,
+        "name": "Recall",
+        "url": "https://recall.limecore.dev/",
+        "applicationCategory": "EducationApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }
     ]
   }
@@ -415,6 +424,19 @@
     .build-link-note { font-family: var(--fmono); font-size: 0.6rem; color: var(--muted); margin-left: 12px; opacity: 0.6; }
 
     /* SIDE EXPERIMENTS RAIL (Krata) */
+    /* OUTSIDE THE SUITE (standalone apps, foldable) */
+    .app-fold { margin-top: 48px; }
+    .app-fold-summary { cursor: pointer; list-style: none; padding: 8px 0; }  /* ~30px tap target */
+    .app-fold-summary::-webkit-details-marker { display: none; }
+    .app-fold-toggle { font-family: var(--fmono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; transition: color 0.2s; }
+    .app-fold-toggle::before { content: '− Hide'; }
+    .app-fold:not([open]) .app-fold-toggle::before { content: '+ Show'; }
+    .app-fold-summary:hover .app-fold-toggle,
+    .app-fold-summary:hover .side-rail-label { color: var(--accent); }
+    .app-fold-summary:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+    /* auto-fill + transparent: one card stays card-width, and unused tracks don't paint as grey cells */
+    .projects-grid--standalone { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; background: transparent; }
+    .projects-grid--standalone .project-card { border: 1px solid var(--border); }
     .side-rail { margin-top: 48px; }
     .side-rail-header { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
     .side-rail-label { font-family: var(--fmono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
@@ -738,7 +760,7 @@
           </div>
           <span class="project-num">002</span>
           <div class="project-name">LimeLog</div>
-          <p class="project-desc">Periodized workout tracker built for competitive athletes. Log sets, track vertical jump, work around injury restrictions, and get phase-aware progression insights. Writes into Nexus Fitness over Realtime. Android only — F-Droid submission in review.</p>
+          <p class="project-desc">Periodized workout tracker built for competitive athletes. Log sets, track vertical jump, work around injury restrictions, and get phase-aware progression insights. Writes into Nexus Fitness over Realtime. Android only, on F-Droid.</p>
           <div class="chips">
             <span class="chip">React</span>
             <span class="chip">TypeScript</span>
@@ -750,7 +772,7 @@
             <span class="status-badge local">Local-first</span>
             <div class="card-links">
               <a href="https://github.com/Limekana/limelog" target="_blank" rel="noopener" class="project-link" aria-label="LimeLog on GitHub">GitHub ↗</a>
-              <!-- TODO: insert F-Droid link / badge when submission is accepted -->
+              <a href="https://f-droid.org/packages/com.limecore.workouttracker/" target="_blank" rel="noopener" class="project-link fdroid" aria-label="LimeLog on F-Droid">F-Droid ↗</a>
             </div>
           </div>
         </div>
@@ -796,6 +818,56 @@
         </div>
 
       </div>
+
+      <!-- Outside the suite: standalone apps that don't sync with Nexus -->
+      <details class="app-fold reveal" open>
+        <summary class="side-rail-header app-fold-summary">
+          <span class="side-rail-label">// Outside the suite</span>
+          <div class="section-line"></div>
+          <span class="app-fold-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="projects-grid projects-grid--standalone">
+          <div class="project-card reveal reveal-delay-1">
+            <div class="card-screens">
+              <div class="screen-item">
+                <div class="screen-frame">
+                  <picture>
+                    <source srcset="Recall_Modes.webp" type="image/webp"/>
+                    <img class="zoomable" src="Recall_Modes.png" width="864" height="1870" loading="lazy" decoding="async" alt="A study set of six cards with its five study modes: Flashcards, Learn, Test, Match, and Block Blast"/>
+                  </picture>
+                </div>
+                <div class="screen-caption">Study modes</div>
+              </div>
+              <div class="screen-item">
+                <div class="screen-frame">
+                  <picture>
+                    <source srcset="Recall_Learn.webp" type="image/webp"/>
+                    <img class="zoomable" src="Recall_Learn.png" width="864" height="1870" loading="lazy" decoding="async" alt="Learn mode asking a multiple-choice question about a card, with four answer options"/>
+                  </picture>
+                </div>
+                <div class="screen-caption">Learn</div>
+              </div>
+            </div>
+            <span class="project-num">004</span>
+            <div class="project-name">Recall</div>
+            <p class="project-desc">Flashcard study app. Build a set by hand or paste one from a spreadsheet, then study it as flashcards, tests, Match or Block Blast. Learn moves from multiple choice to typed recall as a card sticks, and Review schedules what's due. No account, no analytics — sync is opt-in. Runs in the browser and installs offline.</p>
+            <div class="chips">
+              <span class="chip">React</span>
+              <span class="chip">TypeScript</span>
+              <span class="chip">Dexie</span>
+              <span class="chip">Supabase</span>
+              <span class="chip">Capacitor</span>
+            </div>
+            <div class="project-footer">
+              <span class="status-badge local">Local-first</span>
+              <div class="card-links">
+                <a href="https://github.com/Limekana/Recall" target="_blank" rel="noopener" class="project-link" aria-label="Recall on GitHub">GitHub ↗</a>
+                <a href="https://recall.limecore.dev" target="_blank" rel="noopener" class="project-link web" aria-label="Open Recall in your browser">Open in browser ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
 
       <!-- Side experiments rail -->
       <div class="side-rail reveal">
@@ -1028,7 +1100,7 @@
             <div class="about-stat-label">Helsinki, Finland</div>
           </div>
           <div class="about-stat reveal reveal-delay-2">
-            <div class="about-stat-val">4</div>
+            <div class="about-stat-val">5</div>
             <div class="about-stat-label">Projects in flight</div>
           </div>
         </div>
