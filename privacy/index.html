@@ -35,7 +35,7 @@
 <header>
   <div class="brand">Limecore Studio</div>
   <h1>Privacy Policy</h1>
-  <div class="updated">Last updated 3 October 2026 · covers Nexus Command Center, LimeLog and StudyDesk</div>
+  <div class="updated">Last updated 6 October 2026 · covers Nexus Command Center, LimeLog and StudyDesk</div>
 </header>
 
 <p class="lede">
@@ -236,12 +236,11 @@ services below are the only ones that receive anything at all.</p>
 </p>
 <p>
   One consequence is worth stating plainly rather than leaving you to infer it. If you
-  add <strong>your own Finnhub API key</strong> in Settings on the website, Finnhub
-  accepts that key as part of the web address rather than as a hidden header — so the
-  key can appear in Vercel's request logs. Nothing new is exposed to a third party: it
-  is your key, and it was already travelling to Finnhub in the clear. What is new is
-  that it can also sit in a log on infrastructure we operate. If you would rather it
-  did not, use the Android app, where the request never passes through us.
+  add <strong>your own Finnhub API key</strong> in Settings on the website, the key goes
+  along with those forwarded requests. It travels in a hidden request header, not in
+  the web address, so it is not part of the addresses Vercel keeps in its request logs.
+  It does still pass through Vercel's servers on its way to Finnhub. If you would
+  rather it did not, use the Android app, where the request never passes through us.
 </p>
 
 <h3>F-Droid (Android update check)</h3>
