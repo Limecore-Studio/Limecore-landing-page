@@ -35,7 +35,7 @@
 <header>
   <div class="brand">Limecore Studio</div>
   <h1>Privacy Policy</h1>
-  <div class="updated">Last updated 6 October 2026 · covers Nexus Command Center, LimeLog and StudyDesk</div>
+  <div class="updated">Last updated 18 November 2026 · covers Nexus Command Center, LimeLog and StudyDesk</div>
 </header>
 
 <p class="lede">
@@ -51,12 +51,15 @@
     <li><strong>Without an account, nothing you enter leaves your device.</strong> All three apps work fully offline as a guest.</li>
     <li><strong>With an account, your data syncs</strong> so you can use more than one device and survive changing phone.</li>
     <li><strong>No advertising, and nothing that follows you around.</strong> The Android
-    apps contain no analytics code at all — not disabled, not present. The two
+    apps contain no third-party analytics code at all — not disabled, not present. The two
     <em>websites</em> count page views without cookies and without anything tied to your
     account; that is described in full below.</li>
     <li><strong>Error reports are off until you switch them on.</strong> If an app
     crashes and you have allowed it, it sends us a technical description of the
     failure, never the things you entered. They are erased after 90 days.</li>
+    <li><strong>Two small things are also off until you say yes:</strong> a note of
+    the days you open each app, and the Android apps' daily check for updates on
+    F-Droid. Each app asks once, and each has a switch in Settings.</li>
     <li><strong>The AI features are off until you switch them on</strong> in Settings, in every app. If you do switch them on, what you send <strong>may be used by Google to train its models</strong> — we run on their free tier. Details below.</li>
     <li>You can <strong>export everything</strong> and <strong>delete your account and all its data</strong> from inside any of the three apps, without asking us.</li>
     <li>One account works across all three apps. Deleting it deletes everything, in all three.</li>
@@ -88,11 +91,12 @@
   you entered. See <a href="#processors">Who else sees your data</a>.
 </p>
 <p>
-  The Android apps also ask <code>f-droid.org</code>, at most once a day, whether a
-  newer version exists, so they can tell you about fixes you have not installed.
-  That request names the app and nothing else, and you can turn it off in
-  Settings. Error reports and feedback need an account, so a guest never sends
-  either.
+  If you say yes, the Android apps also ask <code>f-droid.org</code>, at most once a
+  day, whether a newer version exists, so they can tell you about fixes you have
+  not installed. That request names the app and nothing else. It is off until you
+  answer: each app asks once, a guest included, and you can change your answer in
+  Settings. Error reports, feedback and the app-open record need an account, so a
+  guest never sends any of them.
 </p>
 
 <h2>What is stored when you sign in</h2>
@@ -121,6 +125,17 @@
   that a bug gets fixed without anyone having to describe it first. They are not
   analytics: they describe a failure, not what you did, and nothing is sent while
   the app is working normally.
+</p>
+
+<h3>The days you open an app (all apps)</h3>
+<table>
+  <tr><th>App-open record <em>(only if you say yes)</em></th><td>One row for each day you open an app while signed in: the date, the app, its version and the platform (Android, desktop or web), linked to your account. Opening it again the same day changes nothing. <strong>It records that you came back, not what you did</strong> — no screens, no times, nothing you entered. We use it to see whether people return to the apps, which tells us whether they are worth building on. Kept until you delete your account. It is not in the data export yet; email us and we will send you a copy, or erase it.</td></tr>
+</table>
+<p>
+  It is off until you say yes. Each app asks once for each account, and each has
+  a switch in Settings to turn it off again. Turning it off stops new rows from
+  being recorded; it does not remove the days already recorded, so ask us if you
+  want those gone too.
 </p>
 
 <h3>Nexus Command Center</h3>
@@ -166,9 +181,10 @@
 <h3>What we never collect</h3>
 <p>
   No location, no contacts, no advertising or device identifiers, no browsing
-  history, no usage analytics. The apps request no permissions for any of it.
-  (Error reports, described above, are off unless you switch them on, and are
-  about crashes rather than about you.)
+  history. The apps request no permissions for any of it. (Error reports and the
+  app-open record, described above, are off unless you say yes. Error reports are
+  about crashes rather than about you; the app-open record holds a date, an app
+  version and a platform, and nothing about what you did.)
 </p>
 <p>
   The only sensitive permissions any of the three ever ask for are notifications,
@@ -245,11 +261,13 @@ services below are the only ones that receive anything at all.</p>
 
 <h3>F-Droid (Android update check)</h3>
 <p>
-  At most once a day each Android app asks F-Droid's public website which version
-  it currently offers. The request names the app (for example
+  If you say yes, each Android app asks F-Droid's public website, at most once a
+  day, which version it currently offers. The request names the app (for example
   <code>com.StudyDesk.app</code>) and carries nothing about you, your account or
-  your data. Like any web request, F-Droid sees the IP address it came from. You
-  can turn the check off in Settings; the app then never contacts F-Droid itself.
+  your data. Like any web request, F-Droid sees the IP address it came from.
+  <strong>The check is off until you answer.</strong> Each app asks once, for each
+  account or for a guest, and you can turn it on or off again in Settings. While it
+  is off, the app never contacts F-Droid itself.
 </p>
 
 <h3>Ko-fi (only if you tap the support link)</h3>
@@ -326,9 +344,11 @@ services below are the only ones that receive anything at all.</p>
   <li><strong>Your consent</strong> (Art. 6(1)(a)) also covers error reports, which
   you give by switching them on or sending a single report, and withdraw by
   switching them off; and feedback, which is sent only when you press Send.</li>
-  <li><strong>Our legitimate interest in keeping the apps current</strong>
-  (Art. 6(1)(f)) covers the F-Droid update check. It carries no personal data
-  beyond the IP address every web request has, and you can switch it off.</li>
+  <li><strong>Your consent</strong> (Art. 6(1)(a)) is also the basis for the
+  app-open record and the F-Droid update check. You give it by answering yes when
+  an app asks, or by switching them on in Settings, and withdraw it by switching
+  them off. Withdrawing stops anything further from being sent. To remove the
+  app-open days already recorded, email us or delete your account.</li>
 </ul>
 
 <h2>Age</h2>
@@ -359,6 +379,8 @@ services below are the only ones that receive anything at all.</p>
   window. Encrypted infrastructure backups roll off within 7 days.</li>
   <li><strong>Error reports</strong> are erased automatically 90 days after they
   are sent, or straight away if you delete your account.</li>
+  <li><strong>The app-open record</strong> is kept until you delete your account,
+  or until you ask us to erase it.</li>
 </ul>
 
 <h2>Your rights</h2>
