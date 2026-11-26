@@ -60,7 +60,8 @@
     <li><strong>Two small things are also off until you say yes:</strong> a note of
     the days you open each app, and the Android apps' daily check for updates on
     F-Droid. Each app asks once, and each has a switch in Settings.</li>
-    <li><strong>The AI features are off until you switch them on</strong> in Settings, in every app. If you do switch them on, what you send <strong>may be used by Google to train its models</strong> — we run on their free tier. Details below.</li>
+    <li><strong>The AI features work only with your own Google AI key</strong>, and are off until you add one and switch them on. Your device then talks to Google directly, under your own agreement with Google; nothing passes through us. Details below.</li>
+    <li><strong>Health data in LimeLog</strong> (body measurements, notes about pain) is stored on our server only if you explicitly agree.</li>
     <li>You can <strong>export everything</strong> and <strong>delete your account and all its data</strong> from inside any of the three apps, without asking us.</li>
     <li>One account works across all three apps. Deleting it deletes everything, in all three.</li>
   </ul>
@@ -253,7 +254,9 @@ stored in the EU (Stockholm, Sweden).</p>
   <li><strong>"Continue with Google" sign-in.</strong> Google tells us your email
   address, name and profile picture. Your Google account itself is governed by
   <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>.</li>
-  <li><strong>The AI features</strong>, described in full below.</li>
+  <li><strong>The AI features, on your own key</strong>, described in full below.
+  There Google is not our processor: your device sends the request to Google
+  under your own agreement with Google, and it never reaches us.</li>
 </ul>
 
 <h3>Market data providers (Nexus Command Center only)</h3>
@@ -360,8 +363,14 @@ stored in the EU (Stockholm, Sweden).</p>
 <h2>The AI features</h2>
 <p>
   Each app has one optional feature that sends something to Google's
-  <strong>Gemini</strong> model. <strong>All three are off until you switch them
-  on in Settings</strong>, and they stay off after a fresh install, after a
+  <strong>Gemini</strong> model. <strong>They work only with your own Google AI
+  key.</strong> You add the key in Settings; it is stored on that device only, is
+  never synced or sent to us, is left out of your data export, and is removed when
+  you sign out. Your device then sends the request straight to Google, under your
+  own agreement with Google. <strong>It does not pass through our servers, and we
+  never see what is sent or what comes back</strong>, except what the app saves
+  with the session (below). Without a key, nothing is sent. All three are also off
+  until you switch them on, and they stay off after a fresh install, after a
   reinstall, and for anyone who signs in on a device where someone else turned
   them on.
 </p>
@@ -376,29 +385,21 @@ stored in the EU (Stockholm, Sweden).</p>
   every other feature works identically. While it is on, please do not write
   anything in those notes you would not want processed by a third party.
   <br><br>
-  What is sent may be processed outside the EEA, under the Standard Contractual
-  Clauses Google offers for international transfers. We do not send your email
-  address, your name or your account ID along with it.
+  What is sent may be processed outside the EEA. The app does not send your email
+  address, your name or your account ID along with it, but Google knows whose key
+  it is.
 </div>
 <div class="box">
-  <strong>Read this before you switch it on.</strong> These apps use Google's
-  <em>free</em> Gemini tier, and on that tier
-  <strong>Google may use what is sent to improve its products, including
-  training future versions of its models</strong>. That is the trade-off for the
-  feature costing nothing to run, and we would rather say so plainly than bury
-  it.
+  <strong>Read this before you add a key.</strong> What Google does with what you
+  send depends on your key, not on us. <strong>On Google's free tier, Google may
+  use it to improve its products, including training future versions of its
+  models</strong>, and Google does not offer the free tier in the EU, the UK or
+  Switzerland. A paid key avoids both. Check Google's terms for the key you use.
   <p>
-    In practice this means: anything you type into a study or workout debrief
-    could end up as training data at Google. The Nexus Command Center summary
-    sends only five 0–100 scores and the headlines already on your screen, so
-    there is nothing personal in it to train on — but the two debriefs send
-    exactly the words you wrote.
-  </p>
-  <p>
-    <strong>If that is not acceptable to you, leave the switch off.</strong>
-    Nothing else in any of the apps changes, and no feature other than these
-    three is affected. If we ever move to Google's paid tier — where this use is
-    contractually excluded — we will update this page and say so in the apps.
+    The Nexus Command Center summary sends only five 0–100 scores and the
+    headlines already on your screen. The two debriefs send exactly the words you
+    wrote, so do not write anything in them you would not want Google to process.
+    If you would rather not, add no key: nothing else in any of the apps changes.
   </p>
 </div>
 
@@ -480,8 +481,9 @@ stored in the EU (Stockholm, Sweden).</p>
 </p>
 <p>Two of those are buttons rather than requests, so you never have to wait for us:</p>
 <ul>
-  <li><strong>Export my data</strong> — downloads everything we hold, as JSON,
-  including feedback you sent and any error reports we still keep.</li>
+  <li><strong>Export my data</strong> — saves everything your account holds, from
+  all three apps, including what only our server keeps (feedback, error reports,
+  the app-open record, supporter status) and the files you uploaded.</li>
   <li><strong>Delete my account</strong> — erases the account and all its data,
   across all three apps.</li>
 </ul>
