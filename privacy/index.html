@@ -60,7 +60,8 @@
     <li><strong>Two small things are also off until you say yes:</strong> a note of
     the days you open each app, and the Android apps' daily check for updates on
     F-Droid. Each app asks once, and each has a switch in Settings.</li>
-    <li><strong>The AI features are off until you switch them on</strong> in Settings, in every app. If you do switch them on, what you send <strong>may be used by Google to train its models</strong> — we run on their free tier. Details below.</li>
+    <li><strong>The AI features work only with your own Google AI key</strong>, and are off until you add one and switch them on. Your device then talks to Google directly, under your own agreement with Google; nothing passes through us. Details below.</li>
+    <li><strong>Health data in LimeLog</strong> (body measurements, notes about pain) is stored on our server only if you explicitly agree.</li>
     <li>You can <strong>export everything</strong> and <strong>delete your account and all its data</strong> from inside any of the three apps, without asking us.</li>
     <li>One account works across all three apps. Deleting it deletes everything, in all three.</li>
   </ul>
@@ -110,8 +111,9 @@
 <h3>Your account (all apps)</h3>
 <table>
   <tr><th>Email address</th><td>How you sign in, and how we reach you if we must.</td></tr>
-  <tr><th>Name and profile picture</th><td>Only if you sign in with Google, and only as Google supplies them.</td></tr>
-  <tr><th>Preferences</th><td>Things like language and units, so they survive a reinstall.</td></tr>
+  <tr><th>Name and profile picture</th><td>Your name, and either a picture or a symbol and colour you pick. The picture is one Google supplies if you sign in with Google, or one you upload in StudyDesk, stored as a private file only your account can read.</td></tr>
+  <tr><th>Account settings</th><td>Whether you have finished each app's first-run steps, your StudyDesk grade scale, and Nexus Command Center's base currency and Life Score profile. Language, theme, units and notification choices stay on your device.</td></tr>
+  <tr><th>Supporter status <em>(only if you support the project)</em></th><td>Your Ko-fi tier, when your support started and when it runs out, the email address the payment came from, and Ko-fi's reference for the payment. If you confirmed a second email address for Ko-fi in Settings, that address too. See <a href="#kofi">Ko-fi</a>.</td></tr>
 </table>
 
 <h3>Feedback and error reports (all apps)</h3>
@@ -129,7 +131,7 @@
 
 <h3>The days you open an app (all apps)</h3>
 <table>
-  <tr><th>App-open record <em>(only if you say yes)</em></th><td>One row for each day you open an app while signed in: the date, the app, its version and the platform (Android, desktop or web), linked to your account. Opening it again the same day changes nothing. <strong>It records that you came back, not what you did</strong> — no screens, no times, nothing you entered. We use it to see whether people return to the apps, which tells us whether they are worth building on. Kept until you delete your account. It is not in the data export yet; email us and we will send you a copy, or erase it.</td></tr>
+  <tr><th>App-open record <em>(only if you say yes)</em></th><td>One row for each day you open an app while signed in: the date, the app, its version and the platform (Android, desktop or web), linked to your account. Opening it again the same day changes nothing. <strong>It records that you came back, not what you did</strong> — no screens, no times, nothing you entered. We use it to see whether people return to the apps, which tells us whether they are worth building on. <strong>Kept for 13 months, then deleted automatically; deleting your account deletes it at once.</strong> It is included in your data export, and you can ask us to erase it sooner.</td></tr>
 </table>
 <p>
   It is off until you say yes. Each app asks once for each account, and each has
@@ -140,10 +142,13 @@
 
 <h3>Nexus Command Center</h3>
 <table>
-  <tr><th>Finance</th><td>Budget categories and limits, transactions, manual assets and account balances, investment holdings, purchase lots, sales, cash entries, watchlist symbols, savings goals.</td></tr>
-  <tr><th>Tasks &amp; habits</th><td>Tasks and due dates, habits and their daily completions.</td></tr>
+  <tr><th>Finance</th><td>Budget categories and limits, transactions, recurring payments, manual assets and account balances, investment holdings, purchase lots, sales, cash entries, and watchlist symbols with price targets. Savings goals stay on your device.</td></tr>
+  <tr><th>Goals</th><td>Title, type, target value and date, and whether it is done.</td></tr>
+  <tr><th>Tasks &amp; habits</th><td>Tasks and due dates, habits and their daily completions, and the notes you jot into the inbox.</td></tr>
+  <tr><th>Reading list</th><td>Title, author, status, pages, rating, dates and notes.</td></tr>
   <tr><th>Work</th><td>A daily 1–5 self-rating and an optional short note.</td></tr>
   <tr><th>Sharing</th><td>If you share a budget or task with someone, we store who it is shared with and what permission they have.</td></tr>
+  <tr><th>Change history of tasks and budgets</th><td>A copy of a task or budget category before and after each change, kept for the sharing feature. Erased after 90 days, and at once when the item itself is erased.</td></tr>
 </table>
 <p>
   Financial figures you enter are stored as you enter them. We do not connect to
@@ -154,19 +159,21 @@
 
 <h3>LimeLog</h3>
 <table>
-  <tr><th>Training</th><td>Programs and phases, sessions, every set with its weight, reps and effort rating, personal records, and session notes.</td></tr>
-  <tr><th>Body metrics</th><td>Bodyweight and any measurements you choose to record, plus vertical-jump entries.</td></tr>
+  <tr><th>Training</th><td>Sessions (name, date, activity type, duration, distance), every set with its weight, reps and effort rating, personal records, and session notes. Your programs, session templates and exercise list stay on your device.</td></tr>
+  <tr><th>Body measurements <em>(only if you agree, see below)</em></th><td>Bodyweight, height and girths, and the body-composition figures a smart scale gives (body-fat, water and protein percentages, basal metabolic rate, visceral fat, bone and muscle mass, body age), with any note. Vertical-jump entries stay on your device.</td></tr>
   <tr><th>Progress photos</th><td><strong>Stored only on your device.</strong> Photos are never uploaded and never reach our database.</td></tr>
-  <tr><th>Health Connect <em>(only if you grant it)</em></th><td><strong>Read on your device and never stored.</strong> If you allow it, LimeLog reads today's step count and active calories from Android Health Connect to show them on the Today screen. The numbers are displayed and discarded — they are not written to our database, not saved on your device, and not included in your export, because we never hold a copy. Revoke the permission in Health Connect and the reading stops immediately.</td></tr>
-  <tr><th>AI debrief <em>(only if switched on)</em></th><td>The note you typed, plus what the model extracted: an effort rating, any body parts you mentioned as sore, a mood, and a one-line summary.</td></tr>
+  <tr><th>Health Connect <em>(only if you grant it)</em></th><td><strong>Read on your device and never stored.</strong> If you allow it, LimeLog reads your step count, active calories and total calories from Android Health Connect, for today and as this week's step totals, to show them on the Today screen. The numbers are displayed and discarded — they are not written to our database, not saved on your device, and not included in your export, because we never hold a copy. Revoke the permission in Health Connect and the reading stops immediately.</td></tr>
+  <tr><th>AI debrief <em>(only if switched on)</em></th><td>The note you typed, plus what the model extracted: an effort rating, any body parts you mentioned as sore (<em>only if you agree, see below</em>), a mood, and a one-line summary.</td></tr>
 </table>
-<div class="box">
-  <strong>About body data.</strong> Bodyweight and body measurements can reveal
-  something about your physical condition, so we treat them more carefully than
-  the rest: they are stored only if you choose to record them, they are never used
-  for anything except showing you your own trends, and they are never shared with
-  anyone. If you would rather not have them on a server at all, use LimeLog as a
-  guest — every feature still works.
+<div class="box" id="health-data">
+  <strong>Health data needs your explicit agreement.</strong> Body measurements and
+  notes about soreness or pain are data about your health, which the law protects
+  more strictly than the rest. <strong>LimeLog stores them on our server only if
+  you agree</strong>, in a one-time question the first time you record one while
+  signed in. Until you agree, or if you decline, they stay on your device and
+  every feature still works. You can withdraw in Settings at any time; withdrawing
+  erases them from our server and keeps them on your device. They are never used
+  for anything except showing you your own trends, and never shared with anyone.
 </div>
 
 <h3>StudyDesk</h3>
@@ -174,6 +181,14 @@
   <tr><th>Courses</th><td>Name, colour, credits, semester, school year.</td></tr>
   <tr><th>Grades</th><td>The grade, its weight, the date, and any note you write.</td></tr>
   <tr><th>Study sessions</th><td>Start time, duration, focus rating, and any note you write.</td></tr>
+  <tr><th>Assignments, exams and to-dos</th><td>Title, type, due date and time, difficulty, topics, notes, and whether it is done.</td></tr>
+  <tr><th>Notebook</th><td>Your notes for each course: title, lesson date, content and layout.</td></tr>
+  <tr><th>Files you attach</th><td>Files you attach to notes and assignments (up to 10 MB each): the file itself, its name, type and size. They are stored privately in our database provider's file storage, and only your account can read them. A file can contain other people's information; uploading it is your choice. Erased with the note or assignment it belongs to (see <a href="#retention">How long we keep it</a>).</td></tr>
+  <tr><th>Timetable</th><td>School years, semesters and periods; lessons with weekday, times, room and colour; attendance per lesson and date, with any note.</td></tr>
+  <tr><th>Study plan and commitments</th><td>Planned study blocks (start, length, title, notes) and non-study blocks such as training or shifts (title, times, repeat, notes).</td></tr>
+  <tr><th>Progress counters</th><td>Counter name, unit and target, and each day's count.</td></tr>
+  <tr><th>Focus timer</th><td>The state of a running timer, so it follows you between devices. Overwritten as it changes.</td></tr>
+  <tr><th>Calendar feeds <em>(only if you add one)</em></th><td>If you paste a calendar address from your school, StudyDesk fetches it from your school's server and stores the deadlines it finds as assignments. The address itself stays on your device.</td></tr>
   <tr><th>AI debrief <em>(only if used)</em></th><td>The note you typed, plus what the model extracted: topic, a 1–5 comprehension rating, concepts you flagged as confusing, and a one-line summary.</td></tr>
   <tr><th>Home-screen widgets <em>(only if you add one)</em></th><td><strong>Stays on your device.</strong> If you place a StudyDesk widget, the app writes a short list of upcoming assignments and exams — title, course name and due date — to private app storage so the launcher can draw it. Nothing is uploaded, and it is removed when you remove the widget. Worth knowing: whatever a widget shows is visible to anyone who can see your home screen, and depending on your launcher that can include a locked screen. If your coursework titles are sensitive to you, don't add the widget.</td></tr>
 </table>
@@ -193,13 +208,43 @@
   requested only when you use the feature that needs it, each can be declined,
   and declining costs you that one feature and nothing else.
 </p>
+<p>
+  All three Android apps also use the phone's vibration motor for a short buzz
+  when you tap certain buttons. That permission only lets an app vibrate; it reads
+  nothing and sends nothing.
+</p>
 
 <h2 id="processors">Who else sees your data</h2>
-<p>We do not sell or share your data, ever, with anyone, for any purpose. The
-services below are the only ones that receive anything at all.</p>
+<p>We do not sell your data, ever, to anyone, for any purpose. The services below
+are the only ones that receive anything at all, and each receives only what this
+section says.</p>
 
 <h3>Supabase</h3>
-<p>Hosts the database and handles sign-in. Data is stored in the EU.</p>
+<p>Hosts the database and the private file storage, and handles sign-in. Data is
+stored in the EU (Stockholm, Sweden).</p>
+
+<h3>Resend (email)</h3>
+<p>
+  Sends the emails the apps need: sign-in links, confirmation and email-change
+  messages, and the code that confirms a second Ko-fi address. Resend receives the
+  address it sends to and the message, and nothing else from your account.
+</p>
+
+<h3>hCaptcha (sign-up and sign-in check)</h3>
+<p>
+  When you create an account or sign in, the apps may show an hCaptcha check
+  (run by Intuition Machines, Inc.) to stop automated sign-ups. It is loaded only
+  on that screen, and it sees your IP address and browser or device details while
+  it runs. It is not used anywhere else in the apps.
+</p>
+
+<h3>GitHub (desktop updates)</h3>
+<p>
+  The Windows editions of Nexus Command Center and StudyDesk check GitHub for a
+  newer version and download updates from it. Like any web request, GitHub sees
+  the IP address the check comes from; the request says nothing about you or your
+  data.
+</p>
 
 <h3>Google</h3>
 <p>
@@ -209,7 +254,9 @@ services below are the only ones that receive anything at all.</p>
   <li><strong>"Continue with Google" sign-in.</strong> Google tells us your email
   address, name and profile picture. Your Google account itself is governed by
   <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>.</li>
-  <li><strong>The AI features</strong>, described in full below.</li>
+  <li><strong>The AI features, on your own key</strong>, described in full below.
+  There Google is not our processor: your device sends the request to Google
+  under your own agreement with Google, and it never reaches us.</li>
 </ul>
 
 <h3>Market data providers (Nexus Command Center only)</h3>
@@ -227,11 +274,12 @@ services below are the only ones that receive anything at all.</p>
   prices are the same for everyone. The other two apps make no such requests.
 </p>
 
-<h3>Vercel (the websites only)</h3>
+<h3>Vercel and Google Fonts (the websites only)</h3>
 <p>
   Nexus Command Center and StudyDesk also run in a browser, at
   <code>nexus.limecore.dev</code> and <code>studydesk.limecore.dev</code>. Those two
-  websites are hosted by Vercel. LimeLog has no web edition. <strong>Nothing in
+  websites, and this site (<code>limecore.dev</code>), are hosted by Vercel. LimeLog
+  has no web edition. <strong>Nothing in
   this section applies to the Android apps</strong> — the analytics code described
   here is excluded from them at build time, so it is not merely switched off in the
   APK, it is not in the file.
@@ -242,6 +290,13 @@ services below are the only ones that receive anything at all.</p>
   and device type. It sets <strong>no cookies</strong>, stores nothing on your device,
   and is never joined to your account — we can see that a page was opened, not who
   opened it. We use it to know whether anyone is finding the apps at all.
+  <code>limecore.dev</code> also uses Vercel Speed Insights, which measures how fast
+  a page loaded, on the same terms: no cookies, nothing tied to you.
+</p>
+<p>
+  <strong>Fonts on limecore.dev.</strong> The pages of this site load their fonts
+  from Google Fonts, so Google sees your IP address and browser details when you
+  open one. The apps and the two app websites do not use Google Fonts.
 </p>
 <p>
   <strong>Market data on the web edition takes a detour.</strong> A browser cannot call
@@ -270,7 +325,7 @@ services below are the only ones that receive anything at all.</p>
   is off, the app never contacts F-Droid itself.
 </p>
 
-<h3>Ko-fi (only if you tap the support link)</h3>
+<h3 id="kofi">Ko-fi (only if you support the project)</h3>
 <p>
   All three apps have a "support this project" row in Settings. It is an ordinary
   link that opens <code>ko-fi.com</code> in your browser — there is no payment
@@ -279,20 +334,43 @@ services below are the only ones that receive anything at all.</p>
   any browser sends when it opens a page.
 </p>
 <p>
-  If you choose to donate, Ko-fi and its payment processor handle that entirely.
-  <strong>We never see your card details</strong> — they do not pass through our
-  apps or our database. What we receive from Ko-fi is what any creator sees: a
-  display name, the amount, and a message if you leave one. That is held by
-  Ko-fi under their own privacy policy, not by us, and it is not linked to your
-  Limecore account — we have no way to tell which account a donor belongs to.
-  Donating is not required and unlocks nothing; every feature is free either way.
+  If you support the project, Ko-fi and the payment provider it shows you (PayPal
+  or Stripe) handle the payment. <strong>We never see your card details</strong> —
+  they do not pass through our apps or our database. Ko-fi and we are separate
+  data controllers: what Ko-fi itself keeps is governed by Ko-fi's privacy policy.
+</p>
+<p>
+  <strong>What we receive and why.</strong> For a membership, Ko-fi tells us the
+  email address the payment came from, the tier, and its own reference for the
+  payment. <strong>We match that email address to your Limecore account</strong>
+  so we can switch on the supporter theme and badge, the thank-you for supporting.
+  We keep your tier, the dates your support started and runs until, the payment
+  email and Ko-fi's reference, until you delete your account (or ask us to
+  remove them). One-off tips switch nothing on and are not matched.
+</p>
+<p>
+  <strong>If you paid from a different address</strong> than the one you sign in
+  with, you can confirm that address in Settings: we email it a one-time code
+  through Resend, and once you enter the code we store the address with your
+  account for the same purpose. A payment from an address no account matches yet
+  is kept for 35 days, so it can be switched on when you confirm the address or
+  sign up with it, and is then deleted whether or not it was claimed.
+</p>
+<p>
+  Every feature other than the supporter theme and badge is free either way.
 </p>
 
 <h2>The AI features</h2>
 <p>
   Each app has one optional feature that sends something to Google's
-  <strong>Gemini</strong> model. <strong>All three are off until you switch them
-  on in Settings</strong>, and they stay off after a fresh install, after a
+  <strong>Gemini</strong> model. <strong>They work only with your own Google AI
+  key.</strong> You add the key in Settings; it is stored on that device only, is
+  never synced or sent to us, is left out of your data export, and is removed when
+  you sign out. Your device then sends the request straight to Google, under your
+  own agreement with Google. <strong>It does not pass through our servers, and we
+  never see what is sent or what comes back</strong>, except what the app saves
+  with the session (below). Without a key, nothing is sent. All three are also off
+  until you switch them on, and they stay off after a fresh install, after a
   reinstall, and for anyone who signs in on a device where someone else turned
   them on.
 </p>
@@ -307,36 +385,36 @@ services below are the only ones that receive anything at all.</p>
   every other feature works identically. While it is on, please do not write
   anything in those notes you would not want processed by a third party.
   <br><br>
-  What is sent may be processed outside the EEA, under the Standard Contractual
-  Clauses Google offers for international transfers. We do not send your email
-  address, your name or your account ID along with it.
+  What is sent may be processed outside the EEA. The app does not send your email
+  address, your name or your account ID along with it, but Google knows whose key
+  it is.
 </div>
 <div class="box">
-  <strong>Read this before you switch it on.</strong> These apps use Google's
-  <em>free</em> Gemini tier, and on that tier
-  <strong>Google may use what is sent to improve its products, including
-  training future versions of its models</strong>. That is the trade-off for the
-  feature costing nothing to run, and we would rather say so plainly than bury
-  it.
+  <strong>Read this before you add a key.</strong> What Google does with what you
+  send depends on your key, not on us. <strong>On Google's free tier, Google may
+  use it to improve its products, including training future versions of its
+  models</strong>, and Google does not offer the free tier in the EU, the UK or
+  Switzerland. A paid key avoids both. Check Google's terms for the key you use.
   <p>
-    In practice this means: anything you type into a study or workout debrief
-    could end up as training data at Google. The Nexus Command Center summary
-    sends only five 0–100 scores and the headlines already on your screen, so
-    there is nothing personal in it to train on — but the two debriefs send
-    exactly the words you wrote.
-  </p>
-  <p>
-    <strong>If that is not acceptable to you, leave the switch off.</strong>
-    Nothing else in any of the apps changes, and no feature other than these
-    three is affected. If we ever move to Google's paid tier — where this use is
-    contractually excluded — we will update this page and say so in the apps.
+    The Nexus Command Center summary sends only five 0–100 scores and the
+    headlines already on your screen. The two debriefs send exactly the words you
+    wrote, so do not write anything in them you would not want Google to process.
+    If you would rather not, add no key: nothing else in any of the apps changes.
   </p>
 </div>
 
 <h2>Why we are allowed to store it</h2>
 <ul>
   <li><strong>To provide the app you asked for</strong> (GDPR Art. 6(1)(b)) — your
-  finances, training, coursework, tasks and habits. Without them there is no app.</li>
+  finances, training, coursework, tasks and habits, and the files you attach.
+  Without them there is no app.</li>
+  <li><strong>To give supporters what they paid for</strong> (Art. 6(1)(b)) —
+  matching a Ko-fi payment to your account, and confirming a second Ko-fi address
+  if you ask us to.</li>
+  <li><strong>Your explicit consent</strong> (Art. 9(2)(a), with Art. 6(1)(a)) —
+  health data in LimeLog: body measurements and notes about soreness or pain. You
+  give it by answering yes to the one-time question, and withdraw it in Settings,
+  which erases them from our server. See <a href="#health-data">Health data</a>.</li>
   <li><strong>Your consent</strong> (Art. 6(1)(a)) — the AI features. You give it
   by switching them on in Settings, and withdraw it by switching them off. To
   remove what was already sent, delete the sessions those notes belong to, or
@@ -364,23 +442,36 @@ services below are the only ones that receive anything at all.</p>
   an account, contact us and we will delete it.
 </p>
 
-<h2>How long we keep it</h2>
+<h2 id="retention">How long we keep it</h2>
 <ul>
   <li><strong>Until you delete it.</strong> We do not expire accounts or quietly
   remove old data.</li>
   <li>When you delete an item in an app, it is marked deleted and hidden
-  immediately, and the marker is kept so the deletion reaches your other devices.
-  <strong>Those markers, and the deleted content with them, are erased
-  automatically 90 days later</strong> — or straight away if you delete your
-  account. The 90 days exist so the deletion still reaches a device you have not
-  opened in a while; without the marker, that device would put the item back.</li>
-  <li>When you <strong>delete your account</strong>, everything is erased
-  immediately and irreversibly, across all three apps. There is no recovery
-  window. Encrypted infrastructure backups roll off within 7 days.</li>
+  immediately, so the deletion reaches your other devices.
+  <strong>Its content is erased automatically 90 days later.</strong> For
+  StudyDesk items we then keep a marker with no content in it, just an identifier,
+  the dates it was created, changed and deleted, and which course or note it
+  belonged to, until you delete your account. Without that marker, a device you
+  have not opened in a while could put the item back. For the other apps the
+  deleted item is removed entirely after 90 days. Files attached to a deleted note
+  or assignment are erased with it.</li>
+  <li>When you <strong>delete your account</strong>, everything is erased from the
+  live database and file storage immediately and irreversibly, across all three
+  apps. There is no recovery window.</li>
+  <li><strong>Backups.</strong> Our database provider's backups roll off within 7
+  days. We also keep our own weekly backup of the database and the uploaded files,
+  on our own computer, for up to 8 weeks. So something you deleted, or a deleted
+  account, can remain in a backup for up to 8 weeks before it is gone for good.
+  Backups are only ever used to restore the service after a failure.</li>
   <li><strong>Error reports</strong> are erased automatically 90 days after they
   are sent, or straight away if you delete your account.</li>
-  <li><strong>The app-open record</strong> is kept until you delete your account,
-  or until you ask us to erase it.</li>
+  <li><strong>The change history of Nexus Command Center tasks and budgets</strong>
+  is erased after 90 days, and at once when the item is erased.</li>
+  <li><strong>The app-open record</strong> is kept for 13 months, then deleted
+  automatically; deleting your account deletes it at once.</li>
+  <li><strong>Supporter status</strong> is kept until you delete your account or
+  ask us to remove it. A Ko-fi payment no account matches is deleted after 35
+  days.</li>
 </ul>
 
 <h2>Your rights</h2>
@@ -390,8 +481,9 @@ services below are the only ones that receive anything at all.</p>
 </p>
 <p>Two of those are buttons rather than requests, so you never have to wait for us:</p>
 <ul>
-  <li><strong>Export my data</strong> — downloads everything we hold, as JSON,
-  including feedback you sent and any error reports we still keep.</li>
+  <li><strong>Export my data</strong> — saves everything your account holds, from
+  all three apps, including what only our server keeps (feedback, error reports,
+  the app-open record, supporter status) and the files you uploaded.</li>
   <li><strong>Delete my account</strong> — erases the account and all its data,
   across all three apps.</li>
 </ul>
