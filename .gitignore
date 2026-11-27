@@ -5,3 +5,8 @@
 # Internal planning / handoff docs — not for the public repo
 *handoff*.md
 *-handoff.md
+
+# limecore#99: agent instructions and internal snapshots stay local, out of the public repo
+CLAUDE.md
+AGENTS.md
+docs/
