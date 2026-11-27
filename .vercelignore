@@ -1,0 +1,9 @@
+# limecore#99 / #113: Vercel serves every file it is given. Keep the agent
+# files, handoff notes, markdown sources and scripts out of the deployment.
+CLAUDE.md
+AGENTS.md
+README.md
+blog-route-handoff.md
+docs/
+content/
+*.ps1
